@@ -12,7 +12,7 @@ from glob import glob
 import json
 
 
-# and then start the code
+# and then start the Code
 dataDir = '/media/matt/ext4-1/ADSB/2016-07-01/'
 allFiles = glob(dataDir + '*')
 

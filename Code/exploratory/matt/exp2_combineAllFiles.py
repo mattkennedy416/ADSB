@@ -15,9 +15,9 @@ import pandas as pd
 import pickle
 
 
-# functions should go after imports, with any code not in a function at the very bottom
+# functions should go after imports, with any Code not in a function at the very bottom
 # lets first create a function from the work done in the previous file
-def combineToICAODict(filepath, icaoDict):
+def combineToICAODict(filepath, icaoDict=None):
     # Create a docstring for each function. If you fully define the function first (with inputs) then it should
     # auto-populate the param fields below. Fill them out describing each parameter!
     # seems trivial here, but still a good habit and can be critical for more complicated things
@@ -32,7 +32,9 @@ def combineToICAODict(filepath, icaoDict):
     with open(filepath, 'r') as f:
         fileData = json.load(f)
 
-    # icaoDict = {}
+    if icaoDict is None:
+        icaoDict = {}
+
     for packet in fileData['acList']:
         icao = packet['Icao']
 
@@ -48,14 +50,14 @@ def combineToICAODict(filepath, icaoDict):
 
 
 
-# and then start the code
+# and then start the Code
 dataDir = '/media/matt/ext4-1/ADSB/2016-07-01/'
 outputDir = '/media/matt/ext4-1/ADSB/processedData/'
 allFiles = glob(dataDir + '*')
 
 # lets first test a few:
 icaoDict = {} # master icao dictionary
-for n, filepath in enumerate(allFiles[615:620]):
+for n, filepath in enumerate(allFiles):
     print('Processing JSON', n, '/', len(allFiles))
     icaoDict = combineToICAODict( filepath, icaoDict )
 
